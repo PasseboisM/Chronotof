@@ -1,0 +1,164 @@
+@font-face {
+    font-family: 'Baloo';
+    src: url('polices/Baloo/Baloo.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'roboto';
+    src: url('polices/RobotoRegularV1/RobotoRegularV1.eot') format('eot');
+    src: url('polices/RobotoRegularV1/RobotoRegularV1.otf') format('otf'),
+    url('polices/RobotoRegularV1/RobotoRegularV1.svg') format('svg'),
+    url('polices/RobotoRegularV1/RobotoRegularV1.woff') format('woff');
+}
+
+@font-face {
+    src: url('polices/fontello/fontello.eot') format('eot');
+    src: url('polices/fontello/fontello.woff2') format('woff2'),
+    url('polices/fontello/fontello.woff') format('woff'),
+    url('polices/fontello/fontello.ttf') format('ttf'),
+    url('polices/fontello/fontello.svg') format('svg');
+    font-family: 'fontello';
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*---------------------------------
+général
+---------------------------------*/
+
+body {
+    background: #191919;
+    color: white;
+    font-family: roboto, sans-serif;
+}
+
+body > header > div > div > div > span {
+    background: black;
+}
+
+body > main a {
+    color: white;
+}
+
+/*---------------------------------
+header
+---------------------------------*/
+
+body > header > div {
+    background: white;
+}
+
+body > h1 {
+    font-family: 'Baloo', serif;
+}
+
+body > main > nav > a {
+    background: white;
+    color: black;
+    font-size: 1rem;
+    font-family: roboto, sans-serif;
+}
+
+body > header > div > a:first-child {
+    color: black;
+    font-size: 1rem;
+    font-family: 'Baloo', serif;
+}
+
+/*---------------------------------
+header menu
+---------------------------------*/
+
+body > header > nav {
+    background: #191919;
+}
+
+/*---------------------------------
+affichage conditions
+---------------------------------*/
+
+body > div#conditions {
+    background: #191919;
+}
+
+/*---------------------------------
+profil
+---------------------------------*/
+
+body#profil > main > a {
+    background: white;
+    color: black;
+}
+
+body#profil > div > div {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+body#profil > div > div > div:first-of-type {
+    background: white;
+    color: black;
+}
+
+#suppr {
+    color: white;
+    background: black;
+    font-family: roboto;
+    font-size: 1rem;
+}
+
+body form.formFrise > div.commentaire > textarea {
+    background: #191919;
+    color: white;
+    border: white solid 3px;
+    font-family: roboto, sans-serif;
+}
+
+div.lieu > a {
+    background: white;
+    color: #191919;
+    font-family: roboto, sans-serif;
+}
+
+body > div.commentaire > p > span {
+    font-size: 1.5rem;
+}
+
+/*---------------------------------
+premium
+---------------------------------*/
+
+body#premium > main > button > a {
+    color: black;
+}
+
+/*---------------------------------
+galerie
+---------------------------------*/
+
+#galerie > main > div.formulaire > div:first-of-type {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#galerie > main > div.formulaire > div > form {
+    background: white;
+    color: black;
+}
+
+/*---------------------------------
+footer
+---------------------------------*/
+
+body > footer {
+    background: white;
+    color: black;
+}
+
+body > footer > div > a {
+    background: #355BC9;
+    font-size: 30px;
+    font-family: fontello;
+}
+
+body > footer > div > a:before {
+    color: white;
+}

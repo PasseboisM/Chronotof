@@ -1,0 +1,256 @@
+<title>Carte - Chronotof</title>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSRqjDgAjv_HAr1BDgbs8pL6bLH5pvTy0"></script>
+
+<script type="text/javascript">
+    // Variable globale pour la carte
+    var carte;
+
+    function initCarte() {
+
+        var position = new google.maps.LatLng(46.8644103, 3.2201708);
+        //objet contenant des propriétés avec des identificateurs prédéfinis dans Google Maps permettant
+        //de définir des options d'affichage de notre carte
+        var options = {
+            center: position, 		// Position centrage de la carte
+            zoom: 5,				// Zoom
+            mapTypeId: 'roadmap'	// Type de carte
+        };
+
+        //constructeur de la carte qui prend en paramêtre le conteneur HTML
+        //dans lequel la carte doit s'afficher et les options
+        carte = new google.maps.Map(document.getElementById("carteGoogle"), options);
+
+        // chef lieu BFC
+
+        var posDijon = new google.maps.LatLng(47.322082, 5.041508);
+        var marqueurDijon = new google.maps.Marker({
+            position: posDijon,
+            map: carte
+        });
+
+        //chef lieu ARA
+
+        var posLyon = new google.maps.LatLng(45.763688, 4.835366);
+        var marqueurLyon = new google.maps.Marker({
+            position: posLyon,
+            map: carte
+        });
+
+        //chef lieu Bretagne
+
+        var posRenne = new google.maps.LatLng(48.117520, -1.678164);
+        var marqueurRenne = new google.maps.Marker({
+            position: posRenne,
+            map: carte
+        });
+
+        //chef lieu Val de loire
+
+        var posOrlean = new google.maps.LatLng(47.8733947, 1.8421691);
+        var marqueurOrlean = new google.maps.Marker({
+            position: posOrlean,
+            map: carte
+        });
+
+        //chef lieu Corse
+
+        var posAjaccio = new google.maps.LatLng(41.9207103, 8.6537499);
+        var marqueurAjaccio = new google.maps.Marker({
+            position: posAjaccio,
+            map: carte
+        });
+
+        //chef lieu Grand Est
+
+        var posStrasbourg = new google.maps.LatLng(48.5704732, 7.7537689);
+        var marqueurStrasbourg = new google.maps.Marker({
+            position: posStrasbourg,
+            map: carte
+        });
+
+        //chef lieu Haut de france
+
+        var posLille = new google.maps.LatLng(50.6270566, 3.0499366);
+        var marqueurLille = new google.maps.Marker({
+            position: posLille,
+            map: carte
+        });
+
+        //chef lieu îlle de france
+
+        var posParis = new google.maps.LatLng(48.8591302, 2.3406588);
+        var marqueurParis = new google.maps.Marker({
+            position: posParis,
+            map: carte
+        });
+
+        //chef lieu Normandie
+
+        var posRouen = new google.maps.LatLng(49.439699, 1.094644);
+        var marqueurRouen = new google.maps.Marker({
+            position: posRouen,
+            map: carte
+        });
+
+        //chef lieu Nouvelle Aquitaine
+
+        var posBordeaux = new google.maps.LatLng(44.8436239, -0.5754979);
+        var marqueurBordeaux = new google.maps.Marker({
+            position: posBordeaux,
+            map: carte
+        });
+
+        //chef lieu Occitanie
+
+        var posToulouse = new google.maps.LatLng(43.6006786, 1.3628014);
+        var marqueurToulouse = new google.maps.Marker({
+            position: posToulouse,
+            map: carte
+        });
+
+        //chef lieu Pays de la Loire
+
+        var posNantes = new google.maps.LatLng(47.2382007, -1.6307598);
+        var marqueurNantes = new google.maps.Marker({
+            position: posNantes,
+            map: carte
+        });
+
+        //chef lieu ARA
+
+        var posMarseille = new google.maps.LatLng(43.3085845, 5.4095399);
+        var marqueurMarseille = new google.maps.Marker({
+            position: posMarseille,
+            map: carte
+        });
+
+        google.maps.event.addListener(
+                marqueurAjaccio,
+                'click',
+                function () {
+                    document.location.href = "index.php?page=frise&region=Corse";
+                }
+        );
+
+        google.maps.event.addListener(
+                marqueurDijon,
+                'click',
+                function () {
+                    document.location.href = "index.php?page=frise&region=Bourgogne-Franche-Comte";
+                }
+        );
+
+        google.maps.event.addListener(
+                marqueurLyon,
+                'click',
+                function () {
+                    document.location.href = "index.php?page=frise&region=Auvergne-Rhone-Alpes";
+                }
+        );
+
+        google.maps.event.addListener(
+                marqueurBordeaux,
+                'click',
+                function () {
+                    document.location.href = "index.php?page=frise&region=Nouvelle-Aquitaine";
+                }
+        );
+
+        google.maps.event.addListener(
+                marqueurLille,
+                'click',
+                function () {
+                    document.location.href = "index.php?page=frise&region=Hauts-De-France";
+                }
+        );
+
+        google.maps.event.addListener(
+                marqueurMarseille,
+                'click',
+                function () {
+                    document.location.href = "index.php?page=frise&region=PACA";
+                }
+        );
+
+        google.maps.event.addListener(
+                marqueurNantes,
+                'click',
+                function () {
+                    document.location.href = "index.php?page=frise&region=Pays_De_La_Loire";
+                }
+        );
+
+        google.maps.event.addListener(
+                marqueurOrlean,
+                'click',
+                function () {
+                    document.location.href = "index.php?page=frise&region=Centre-Val_De_Loire";
+                }
+        );
+
+        google.maps.event.addListener(
+                marqueurParis,
+                'click',
+                function () {
+                    document.location.href = "index.php?page=frise&region=Ile-De-France";
+                }
+        );
+
+        google.maps.event.addListener(
+                marqueurRenne,
+                'click',
+                function () {
+                    document.location.href = "index.php?page=frise&region=Bretagne";
+                }
+        );
+
+        google.maps.event.addListener(
+                marqueurRouen,
+                'click',
+                function () {
+                    document.location.href = "index.php?page=frise&region=Normandie";
+                }
+        );
+
+        google.maps.event.addListener(
+                marqueurStrasbourg,
+                'click',
+                function () {
+                    document.location.href = "index.php?page=frise&region=Grand_Est";
+                }
+        );
+
+        google.maps.event.addListener(
+                marqueurToulouse,
+                'click',
+                function () {
+                    document.location.href = "index.php?page=frise&region=Occitanie";
+                }
+        );
+
+    }
+</script>
+</head>
+<body id="carte" onload="initCarte()">
+<?php include('morceaux/header.html'); ?>
+<div id="carteGoogle"></div>
+<form action="" method="post">
+    <label for="region"></label><select name="region" id="region">
+    <optgroup label="Sélectionnez la région">
+        <option value="1">Auvergne-Rhône-Alpes</option>
+        <option value="2">Bourgogne-Franche-Comté</option>
+        <option value="3">Bretagne</option>
+        <option value="4">Centre-Val de Loire</option>
+        <option value="5">Corse</option>
+        <option value="6">Grand Est</option>
+        <option value="7">Hauts de France</option>
+        <option value="8">Île de France</option>
+        <option value="9">Normandie</option>
+        <option value="10">Nouvelle Aquitaine</option>
+        <option value="11">Occitanie</option>
+        <option value="12">Pays de la Loire</option>
+        <option value="13">Provence Alpes Côte d'Azur</option>
+    </optgroup>
+</select>
+    <input type="submit" value="Choisir">
+</form>

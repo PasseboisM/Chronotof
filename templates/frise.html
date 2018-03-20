@@ -1,0 +1,109 @@
+<title>Frise - Chronotof</title>
+</head>
+<body id="frise">
+<?php include('morceaux/header.html'); ?>
+<div class="imagePrinc"><a target="_blank"
+                           href="<?php echo 'images_frise/'.$laRegion->getNom().'/'. $photoActuel; ?>"><img
+        src="<?php echo 'images_frise/'.$laRegion->getNom().'/'. $photoActuel; ?>"
+        alt=""></a>
+</div>
+<div>
+    <p>Note moyenne : <?php for($t = 0; $t < $nbImage; $t++){ if ($_GET['id'] == $photoRegion[$t]->getId()){echo
+        $photoRegion[$t]->getMoyenNote(); }} ?></p>
+</div>
+<?php if (!isset($modeInvite)){ ?>
+<form action="index.php?page=modif_note" method="post" class="formFrise">
+    <div class="vote">
+        <input type="hidden" name="idPhoto" value="<?php echo $idPhotoActu; ?>">
+        <?php if(!isset($_SESSION['vote'])){$_SESSION['vote'] = 0;} for($i=0; $i<6; $i++){ ?>
+        <?php if(isset($_SESSION['vote']) && !isset($stop)){
+        $stop = true;
+
+        for($t=1; $t<=$_SESSION['vote']; $t++){ ?>
+        <input type="submit" name="vote" value="<?php echo $t; ?>" class="input<?php echo $t; ?> input" checked>
+        <svg class="input<?php echo $t; ?>" version="1.1" id="donate" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-219 21 520 520" style="enable-background:new -219 21 520 520;" xml:space="preserve">
+            <polygon fill="#355BC9" class="st0" points="43.6,79 109.2,212 256,233.3 149.8,336.8 174.9,483 43.6,414 -87.7,483 -62.6,336.8
+	-168.8,233.3 -22.1,212 "/>
+            </svg>
+        <?php } $i += $_SESSION['vote']+1;} if($_SESSION['vote'] !== 5){?>
+
+        <input type="submit" name="vote" value="<?php echo $i; ?>" class="input<?php echo $i; ?> input">
+        <svg class="input<?php echo $i; ?>" version=" 1.1" id="donate" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="-219 21 520 520" style="enable-background:new -219 21 520 520;" xml:space="preserve">
+        <polygon fill="#FFFFFF" class="st0"
+                 points="43.6,79 109.2,212 256,233.3 149.8,336.8 174.9,483 43.6,414 -87.7,483 -62.6,336.8-168.8,233.3 -22.1,212 "/>
+        </svg>
+
+        <?php }} $_SESSION['vote'] = 0; ?>
+    </div>
+</form>
+<form action="index.php?page=modif_commentaire" method="post" class="formFrise">
+    <div class="lieu">
+        <input type="hidden" name="idPhoto" value="<?php echo $idPhotoActu; ?>">
+        <a href="index.php?page=carte"><?php echo $laRegion->getNom(); ?></a>
+    </div>
+    <div class="photoFrise">
+        <div id="scroller">
+            <div style="width: <?php echo $nbImageRegion*83+100; echo 'px'; ?>">
+                <?php for ($t = 0; $t < $nbImage; $t++) {
+            if ($laRegion->getId() == $laRegion->getLesPhotos()[$t]->getLaRegion()){?>
+                <a href="<?php echo 'index.php?page=frise&id='.$photoRegion[$t]->getId().'&region='.$laRegion->getNom(); ?>"><img
+                        style="<?php if ($_GET['id'] == $photoRegion[$t]->getId()){ echo 'border: 4px solid white;';} ?>"
+                        src="<?php echo 'images_frise/'.$laRegion->getNom().'/'.$photoRegion[$t]->getLienPhoto() ?>"></a>
+                <?php }} ?>
+            </div>
+        </div>
+    </div>
+    <div class="commentaire">
+        <textarea name="commentaire" id="commentaire" placeholder="Insérez votre commentaire" cols="20"
+                  rows="10"></textarea>
+        <button type="submit" name="comPhoto">Envoyer</button>
+    </div>
+</form>
+<?php } else { ?>
+
+
+<div>
+    <div class="lieu">
+        <a href="index.php?page=carte"><?php for($i=0; $i<count($nomValide); $i++){ if($i+1 == count($nomValide)){echo $nomValide[$i];}else{echo $nomValide[$i]; echo ' ';}} ?></a>
+    </div>
+    <div class="photoFrise">
+        <div id="scroller">
+            <div style="width: <?php echo $nbImageRegion*83+100; echo 'px'; ?>">
+                <?php for ($t = 0; $t < $nbImage; $t++) {
+            if ($laRegion->getId() == $laRegion->getLesPhotos()[$t]->getLaRegion()){?>
+                <a href="<?php echo 'index.php?page=frise&id='.$photoRegion[$t]->getId().'&region='.$laRegion->getNom(); ?>"><img
+                        style="<?php if ($_GET['id'] == $photoRegion[$t]->getId()){ echo 'border: 4px solid white;';} ?>"
+                        src="<?php echo 'images_frise/'.$laRegion->getNom().'/'.$photoRegion[$t]->getLienPhoto() ?>"></a>
+                <?php }} ?>
+            </div>
+        </div>
+    </div>
+    <p>Vous souhaitez commenter cette photo ?<br/> <a href="index.php">Connectez-vous</a>
+</div>
+<?php } ?>
+<div class="commentaire">
+    <?php for($i=0; $i< count($liste);$i++){
+$commentaire = $liste[$i];
+$membres = $listeMembres[$i];?>
+    <p><span><?php if ($commentaire->getId() == $_GET['id']){if ($commentaire->getLienUtilisateur() == $membres->getId()){echo  $membres->getPseudo();}} ?></span><?php if ($commentaire->
+        getId() == $_GET['id']){ if ($membres->getId() == $_SESSION['idUtilisateur']){ ?>
+    <div class="modifCom">
+        <form action="index.php?page=modif_commentaire" method="post" class="formFrise">
+            <input type="hidden" name="idPhoto" value="<?php echo $idPhotoActu; ?>">
+            <div class="commentaire">
+        <textarea name="modifCom" id="commentaire" cols="20"
+                  rows="10"><?php echo $commentaire->getCommentaire(); ?></textarea>
+                <button type="submit" name="comPhoto">Envoyer</button>
+            </div>
+        </form>
+        <form class="supprCom" method="post" action="index.php?page=modif_commentaire">
+            <input type="hidden" name="idPhoto" value="<?php echo $idPhotoActu; ?>">
+            <input type="submit" name="supprime">
+        </form>
+    </div>
+    <?php }else{echo $commentaire->getCommentaire();}} ?></p>
+    <?php } ?>
+</div>
+

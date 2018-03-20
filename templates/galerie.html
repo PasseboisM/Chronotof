@@ -1,0 +1,90 @@
+<title>Galerie - Chronotof</title>
+</head>
+<body id="galerie">
+<?php include('morceaux/header.html');?>
+<h1>Ma Galerie</h1>
+<main>
+    <div>
+        <?php for($i=0; $i<count($listePublication); $i++){if($_SESSION['idUtilisateur'] == $listePublication[$i]->
+        getLesMembres()->getId()){ ?>
+        <div>
+            <img src="<?php echo 'images_frise/'.$listePublication[$i]->getLaRegion()->getNom().'/'; echo $listePublication[$i]->getLienPhoto(); ?>"
+                 alt="image de l'utilisateur">
+            <p><?php echo $i+1 ?> localisation&nbsp;: <a href="index.php?page=frise&region=<?php echo $listePublication[$i]->getLaRegion()->getNom() ?>"><?php echo $listePublication[$i]->getLaRegion()->getNom() ?></a></p>
+        </div>
+        <?php }} ?>
+    </div>
+    <div>
+        <button class="ajouter">Ajouter</button>
+        <button class="suprimer">Suprimer</button>
+    </div>
+    <div class="formulaire">
+        <div class="suppr">
+            <form action="" method="post">
+                <div>
+                    <?php for($i=0; $i<count($listePublication); $i++){ ?>
+                    <input type="checkbox" name="<?php echo $listePublication[$i]->getId(); ?>"
+                           id="<?php echo $listePublication[$i]->getId(); ?>"><label
+                        for="<?php echo $listePublication[$i]->getId(); ?>"><?php echo $i+1 ?></label>
+                    <?php } ?>
+                </div>
+                <input type="submit" name="suppr" value="Suprimer">
+            </form>
+            <div><span></span><span></span></div>
+        </div>
+    </div>
+    <div class="formulaire">
+        <div class="ajouter">
+            <form action="" method="post" enctype="multipart/form-data">
+                <div>
+                    <input type="file" name="image" required/>
+                    <label for="region"></label><select name="region" id="region">
+                    <optgroup label="Sélectionnez la région">
+                        <option value="1">Auvergne-Rhône-Alpes</option>
+                        <option value="2">Bourgogne-Franche-Comté</option>
+                        <option value="3">Bretagne</option>
+                        <option value="4">Centre-Val de Loire</option>
+                        <option value="5">Corse</option>
+                        <option value="6">Grand Est</option>
+                        <option value="7">Hauts de France</option>
+                        <option value="8">Île de France</option>
+                        <option value="9">Normandie</option>
+                        <option value="10">Nouvelle Aquitaine</option>
+                        <option value="11">Occitanie</option>
+                        <option value="12">Pays de la Loire</option>
+                        <option value="13">Provence Alpes Côte d'Azur</option>
+                    </optgroup>
+                </select>
+                </div>
+                <input type="submit" value="Charger">
+            </form>
+            <div><span></span><span></span></div>
+        </div>
+    </div>
+</main>
+<script>
+    (function () {
+        var lesBoutons = document.querySelectorAll('body>main>div>button');
+        var suppr = document.querySelector('body > main > div:nth-child(3)');
+        var ajout = document.querySelector('body > main > div:nth-child(4)');
+        var fermer = document.querySelectorAll('body > main > div.formulaire > div > div');
+
+        for (var i = 0; i < lesBoutons.length; i++) {
+            var leBouton = lesBoutons[i];
+            leBouton.addEventListener('click', function () {
+                if (this.classList == 'ajouter') {
+                    ajout.style.display = 'block';
+                } else {
+                    suppr.style.display = 'block'
+                }
+            })
+        }
+        for (var i = 0; i < fermer.length; i++) {
+            var ferme = fermer[i];
+            ferme.addEventListener('click', function () {
+                suppr.style.display = 'none';
+                ajout.style.display = 'none';
+            })
+        }
+    }());
+</script>

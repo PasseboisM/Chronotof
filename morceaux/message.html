@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/mise_en_page.css"/>
+    <link rel="stylesheet" href="../css/typographie.css"/>
+    <link rel="shorcut icon" type="image/png" href="../images/icone_logo.png">
+    <title>Erreur - Chronotof</title>
+</head>
+<body>
+<header>
+    <div>
+        <a href="../index.php?page=profil">Profil</a>
+        <a href="../index.php"><img src="../images/logo.svg" alt="logo chronotof"/></a>
+        <div>
+            <div><span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="../index.php?page=carte"><img src="../images/carte.svg" alt="carte france"></a></li>
+            <li><a href="../index.php?page=frise"><img src="../images/frise.svg" alt="frise"></a></li>
+            <li><a href="../index.php?page=profil"><img src="../images/user_blanc.svg" alt="icone utilisateur"></a></li>
+            <li><a href="../index.php?page=favoris"><img src="../images/favoris.svg" alt="etoile"></a></li>
+            <li><a href="../index.php?page=premium"><img src="../images/premium.svg" alt="icone premium"></a></li>
+            <li><a href="../index.php?page=donate"><img src="../images/dollard.svg" alt="dollard"></a></li>
+        </ul>
+    </nav>
+</header>
+<p style="margin: 30vh 2rem 30vh;">L'équipe Chronotof a le regret de vous informer qu'une erreur est survenue...</p>
+<footer>
+    <p>Projet réalisé dans le cadre d’un exercice pédagogique au département MMI de Montbéliard
+    </p>
+    <div>
+        <a href="https://www.facebook.com/chronotof"></a>
+        <a href="mailto: chronotofofficiel@gmail.com"></a>
+        <a href="https://twitter.com/chronotof"></a>
+    </div>
+</footer>
+<script>
+    (function () {
+        "use strict";
+        var menu = document.querySelector('body>header>div>div>div');
+        var croix = document.querySelectorAll('body>header>div>div>div>span');
+        var nav = document.querySelector('body>header>nav');
+        var i = true;
+
+        function anime(evt) {
+            croix[0].classList.toggle("un");
+            croix[1].classList.toggle("deux");
+            croix[2].classList.toggle("trois");
+            nav.classList.toggle('visible');
+            if (i) {
+                document.querySelector('body>header>div').style.position = "fixed";
+                document.querySelector('body').style.overflowY = "hidden";
+                i = false;
+            } else {
+                document.querySelector('body>header>div').style.position = "static";
+                document.querySelector('body').style.overflowY = "auto";
+                i = true;
+            }
+        }
+
+        menu.addEventListener("click", anime);
+    }());
+</script>
+
+</body>
+</html>

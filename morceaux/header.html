@@ -1,0 +1,30 @@
+<header>
+    <div>
+        <?php
+        if (isset($cookieValide)) {
+            echo '<a href="index.php?page=profil" style="text-indent: 0; background: none">' . substr($_COOKIE['pseudo'], 0, 10) . '</a>';
+        } elseif (isset($sessionValide)) {
+            echo '<a href="index.php?page=profil" style="text-indent: 0; background: none">' . substr($_SESSION['pseudo'], 0, 10) . '</a>';
+        } else {
+            echo '<a href="index.php?page=profil">Profil</a>';
+        }
+        ?>
+        <a href="index.php"><img src="images/logo.svg" alt="logo chronotof"/></a>
+        <div>
+            <div><span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.php?page=carte"><img src="images/carte.svg" alt="carte france"></a></li>
+            <li><a href="index.php?page=frise"><img src="images/frise.svg" alt="frise"></a></li>
+            <li><a href="index.php?page=profil"><img src="images/user_blanc.svg" alt="icone utilisateur"></a></li>
+            <li><a href="index.php?page=favoris"><img src="images/favoris.svg" alt="etoile"></a></li>
+            <li><a href="index.php?page=premium"><img src="images/premium.svg" alt="icone premium"></a></li>
+            <li><a href="index.php?page=donate"><img src="images/dollard.svg" alt="dollard"></a></li>
+        </ul>
+    </nav>
+</header>

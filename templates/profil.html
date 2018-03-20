@@ -1,0 +1,76 @@
+<title>Profil - Chronotof</title>
+</head>
+<body id="profil">
+<?php include('morceaux/header.html'); ?>
+<h1>Profil</h1>
+<main>
+    <div>
+        <div
+        <?php
+            $imageProfil = $bdd->prepare('SELECT photo FROM membres WHERE pseudo = :pseudo');
+        $imageProfil->execute(array(
+        'pseudo' => $pseudo
+        ));
+        $lienImage = $imageProfil->fetch();
+        if (!$lienImage[0]) {
+        $aleatoire = rand(1, 2);
+        if ($aleatoire == 1) {
+        echo 'style="background-image: url(\'images/femme.svg\');"';
+        } else {
+        echo 'style="background-image: url(\'images/homme.svg\');"';
+        }
+        } else {
+        echo 'style="background-image: url(\'' . $lienImage[0] . '\');"';
+        }
+        ?>></div>
+    <span><?php echo $pseudo; ?></span>
+    </div>
+    <div>
+        <h4><?php echo $titrePhotographe; ?></h4>
+        <div>
+            <div style="<?php echo 'width:'.$width.'%;'; ?>"></div>
+        </div>
+    </div>
+    <h2>Ma galerie</h2>
+    <div>
+        <div>
+            <?php for($i=0; $i<count($listePublication); $i++){ if($_SESSION['idUtilisateur'] == $listePublication[$i]->getLesMembres()->getId()){ ?>
+            <img src="<?php echo 'images_frise/'.$listePublication[$i]->getLaRegion()->getNom().'/'; echo $listePublication[$i]->getLienPhoto(); ?>" alt="image de l'utilisateur">
+            <?php }} ?>
+        </div>
+        <div>
+            <a href="index.php?page=premium">Ajouter du stokage</a>
+            <a href="index.php?page=galerie">Accèder à ma galerie</a>
+        </div>
+    </div>
+    <a href="index.php?page=deco">Déconnexion</a>
+</main>
+<div id="modif_photo">
+    <div>
+        <div>
+            <h4>Modifier image de profil :</h4>
+            <form method="post" action="index.php?page=modif_profil">
+                <input type="hidden" name="suppr">
+                <input type="submit" value="Suprimer" id="suppr">
+            </form>
+            <form method="post" action="index.php?page=modif_profil" enctype="multipart/form-data">
+                <input type="file" name="image" required/>
+                <input type="submit" value="Enregistrer">
+            </form>
+        </div>
+        <div>
+            <span></span><span></span>
+        </div>
+    </div>
+</div>
+<script>
+    var photo = document.querySelector('body#profil>main>div:first-of-type>div');
+    var menuPhoto = document.querySelector('#modif_photo');
+    var fermer = document.querySelector('body#profil > div > div > div:nth-of-type(2)');
+    photo.addEventListener("click", function () {
+        menuPhoto.style.display = 'block';
+    });
+    fermer.addEventListener('click', function () {
+        menuPhoto.style.display = 'none';
+    });
+</script>
